@@ -25,4 +25,11 @@ class User(Base):
 
         # encrypt password
         return bcrypt.hashpw(password.encode('utf-8'), salt)
+
+    def verify_password(self, password):
+        #use checkpw() to compare incoming password to the one saved on User object
+        return bcrypt.checkpw(
+            password.encode('utf-8'),
+            self.password.encode('utf-8')
+        )
     
